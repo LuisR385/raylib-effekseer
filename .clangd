@@ -1,0 +1,40 @@
+CompileFlags:
+  CompilationDatabase: build
+  Add:
+    - -IC:/dev/raylib-effekseer/include
+    - -IC:/dev/raylib-effekseer/thirdparty/raylib/include
+    - -IC:/dev/raylib-effekseer/thirdparty/EffekseerRendererGL
+    - -Iinclude
+    - -Iraylib/include
+    - -I../include
+    - -I../raylib/include
+    - -DUSE_LIBTYPE_SHARED
+
+
+---
+If:
+  PathMatch: .*\.(c|h)$
+CompileFlags:
+  Remove: [-x, -xc++, -xobjective-c, -xobjective-c++]
+  Add: [-xc]
+
+---
+If:
+  PathMatch: .*\.(cc|cpp|cxx|hh|hpp|hxx)$
+CompileFlags:
+  Remove: [-x, -xc, -xobjective-c, -xobjective-c++]
+  Add: [-xc++]
+
+---
+If:
+  PathMatch: .*\.m$
+CompileFlags:
+  Remove: [-x, -xc, -xc++, -xobjective-c++]
+  Add: [-xobjective-c]
+
+---
+If:
+  PathMatch: .*\.mm$
+CompileFlags:
+  Remove: [-x, -xc, -xc++, -xobjective-c]
+  Add: [-xobjective-c++]

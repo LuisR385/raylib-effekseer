@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\raylib-effekseer\build\CMakeFiles\82a46f4d99b460f3c72abfb7cdde066d\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{1B68DAEB-AB9E-3F77-98FB-FFDAEC4F251A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

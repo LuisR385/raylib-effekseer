@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.CommonUtils.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.DDSTextureLoader.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.GpuParticles.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.ModelRendererBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.PngTextureLoader.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.Renderer.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.Renderer_Impl.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RenderStateBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RibbonRendererBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RingRendererBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.SpriteRendererBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.TGATextureLoader.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.TrackRendererBase.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\GraphicsDeviceCPU.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\ModelLoader.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\TextureLoader.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\VertexBuffer.cpp">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.Renderer.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RenderStateBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.ModelRendererBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RibbonRendererBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.RingRendererBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.SpriteRendererBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.StandardRenderer.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.TrackRendererBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.CommonUtils.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.GpuParticles.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.ShaderBase.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.Renderer_Impl.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\GraphicsDeviceCPU.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\ModelLoader.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\TextureLoader.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\TrailRenderer.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\VertexBuffer.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRendererFlags.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.DDSTextureLoader.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.PngTextureLoader.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\EffekseerRendererCommon\EffekseerRenderer.TGATextureLoader.h">
+      <Filter>EffekseerRendererCommon</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\raylib-effekseer\thirdparty\EffekseerRendererCommon\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="EffekseerRendererCommon">
+      <UniqueIdentifier>{EB6B85BD-E5CB-3709-BDF1-0C3A668CE790}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

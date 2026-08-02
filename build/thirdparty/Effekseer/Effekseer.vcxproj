@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8A53D022-045D-30A9-9C32-F617DDC30B48}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Effekseer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effekseer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effekseer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Effekseer.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Effekseer.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Effekseer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatSpecificWarningsAsErrors>4267;4456;4458;4715</TreatSpecificWarningsAsErrors>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\dev\raylib-effekseer\thirdparty\Effekseer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/dev/raylib-effekseer/thirdparty/Effekseer/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/raylib-effekseer -BC:/dev/raylib-effekseer/build --check-stamp-file C:/dev/raylib-effekseer/build/thirdparty/Effekseer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/dev/raylib-effekseer/thirdparty/Effekseer/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/raylib-effekseer -BC:/dev/raylib-effekseer/build --check-stamp-file C:/dev/raylib-effekseer/build/thirdparty/Effekseer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/dev/raylib-effekseer/thirdparty/Effekseer/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/raylib-effekseer -BC:/dev/raylib-effekseer/build --check-stamp-file C:/dev/raylib-effekseer/build/thirdparty/Effekseer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/dev/raylib-effekseer/thirdparty/Effekseer/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/raylib-effekseer -BC:/dev/raylib-effekseer/build --check-stamp-file C:/dev/raylib-effekseer/build/thirdparty/Effekseer/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\dev\raylib-effekseer\build\thirdparty\Effekseer\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer.Modules.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer.SIMD.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Base.Pre.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Base.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Effect.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Color.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.DefaultFile.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.File.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Manager.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.ExternalModel.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Math.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Matrix43.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Matrix44.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Resource.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.RectF.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Setting.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Vector2D.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Vector3D.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Backend\Effekseer.GraphicsDevice.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Server.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Client.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.String.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Base.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Float4.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Float4_Gen.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Float4_NEON.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Float4_SSE.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Int4.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Int4_Gen.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Int4_NEON.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Int4_SSE.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Bridge.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Bridge_Gen.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Bridge_NEON.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Bridge_SSE.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Vec2f.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Vec3f.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Vec4f.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Mat43f.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Mat44f.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Quaternionf.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Utils.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Parameters.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.SpriteRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.RibbonRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.RingRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.ModelRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.TrackRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.GpuTimer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.GpuParticles.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.TextureLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.MaterialLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Curve.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.CurveLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.SoundLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.WorkerThread.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.ResourceManager.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.Model.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.ModelLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Sound\Effekseer.SoundPlayer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\VectorField\Effekseer.VectorField.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\VectorField\Effekseer.VectorFieldLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectImplemented.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNode.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeModel.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRing.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRoot.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeSprite.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeTrack.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.FCurves.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Instance.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceChunk.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceContainer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceGlobal.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceGroup.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InternalScript.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InternalStruct.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.IntrusiveList.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.ManagerImplemented.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Random.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\ForceField\Effekseer.ForceFields.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.MaterialFile.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.PointCacheGenerator.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.ProceduralModelGenerator.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.ProceduralModelParameter.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.SplineGenerator.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.ClientImplemented.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.ServerImplemented.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Session.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Socket.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\data\profiler_generated.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\data\reload_generated.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Noise\Effekseer.CurlNoise.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Noise\Effekseer.PerlinNoise.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.AllTypeColor.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.AlphaCutoff.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.BasicSettings.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Collisions.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.CustomData.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.DepthParameter.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.DynamicParameter.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Easing.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.GpuParticlesParameter.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.KillRules.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.LOD.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Rotation.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Scaling.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Sound.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.SpawnMethod.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Translation.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Trigger.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.UV.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Renderer\Effekseer.ParticleRenderer.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.BinaryReader.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.BinaryVersion.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.Compatiblity.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.InstancePool.h" />
+    <ClInclude Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.Profiler.h" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Color.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.CurveLoader.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.DefaultEffectLoader.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.DefaultFile.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Effect.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNode.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeModel.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRibbon.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRing.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeRoot.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeSprite.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.EffectNodeTrack.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.FCurves.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Instance.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceChunk.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceContainer.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceGlobal.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InstanceGroup.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.InternalScript.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Manager.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Matrix43.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Matrix44.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Random.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.RectF.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Resource.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.ResourceManager.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Setting.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Vector2D.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.Vector3D.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Effekseer.WorkerThread.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.MaterialFile.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.CompiledMaterial.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Material\Effekseer.MaterialCompiler.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\IO\Effekseer.EfkEfcFactory.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Collisions.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Easing.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Parameters.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.KillRules.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.GpuParticlesParameter.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Rotation.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Parameter\Effekseer.Trigger.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Utils\Effekseer.CustomAllocator.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Mat43f.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Mat44f.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\SIMD\Utils.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Noise\Effekseer.CurlNoise.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\ForceField\Effekseer.ForceFields.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.ProceduralModelGenerator.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.Model.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.ModelLoader.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.SplineGenerator.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Model\Effekseer.PointCacheGenerator.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Client.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Server.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Session.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\Network\Effekseer.Socket.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\VectorField\Effekseer.VectorField.cpp" />
+    <ClCompile Include="C:\dev\raylib-effekseer\thirdparty\Effekseer\Effekseer\VectorField\Effekseer.VectorFieldLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\dev\raylib-effekseer\build\ZERO_CHECK.vcxproj">
+      <Project>{5ADF0788-1EF2-30C1-BE04-E7E43D2E14E1}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,3 @@
+-IC:/dev/raylib-effekseer/include
+-IC:/dev/raylib-effekseer/thirdparty/raylib/include
+-IC:/dev/raylib-effekseer/thirdparty/EffekseerRendererGL
