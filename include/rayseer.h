@@ -37,7 +37,6 @@
 #define RAYSEER_H
 
 
-//namespace or C like base
 
 //NOTE  : maybe change to namespace name...
 namespace Rayseer
@@ -64,8 +63,72 @@ namespace Rayseer
 
 	struct EffectHandle
 	{
-		Effekseer::Handle value{};
+	public:
+		Effekseer::Handle value = -1; //effectHandle Value
+
+		bool IsValid() const 
+		{
+			return value >= 0;
+		}
+
+		bool IsPlaying(const Effekseer::ManagerRef& manager) const
+		{
+			if (!IsValid() || !manager) { return false; }
+			return manager->Exists(value);
+		}
+
+		//Ideas? for operator bool helper...
+		explicit operator bool() const
+		{
+			return IsValid();
+		}
+
+
+	private:
+
+
+
 	};
+
+
+	class RaySeerEffectAsset
+	{
+	public:
+		RaySeerEffectAsset() = default;
+		~RaySeerEffectAsset() = default;
+
+		RaySeerEffectAsset(const char* path)
+		{
+			Load(path);
+		}
+
+		using RSEffectAsset = RaySeerEffectAsset;
+
+		
+		bool Load(const char* path)
+		{
+
+			if (!path) { return false; }
+
+			//TODO : utf16->utf8 encoding.
+			//TODO : Create Effect
+
+			//when not succeuss return false.
+			return false;
+		}
+		
+		//RaySeerEffectAsset bool check helper
+		operator bool() const
+		{
+			return m_isvalid;
+		}
+		
+
+	private:
+		Effekseer::EffectRef effect;
+		bool m_isvalid = true;
+	};
+
 
 	//info some class
 
@@ -83,16 +146,19 @@ namespace Rayseer
 		void StopEffect(); //TODO : handleぶちこむ
 		void Play();
 		
+		//TODO : change to place this API function. EffectInstance API
 		void SetPosition(Vector3 pos);
 		void SetRotation(Vector3 rot);
 		void SetScale(Vector3 scale);
 
-		
+
+		EffekseerRendererGL::RendererRef GetNativeRendererRef() { return m_renderer; }
+		Effekseer::ManagerRef GetNativeManagerRef() { return m_manager; }
 
 	private:
 		EffekseerRendererGL::RendererRef m_renderer;
 		Effekseer::ManagerRef			 m_manager;
-
+		
 	};
 
 
@@ -119,6 +185,7 @@ namespace Rayseer
 
 	}
 
+	//TODO : change place define to detail namespace
 	//for effekseer->raylib encoding
 	inline std::string Utf16ToUtf8(const char16_t* text)
 	{
