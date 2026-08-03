@@ -135,12 +135,65 @@ namespace Rayseer
 	class RaySeerContext
 	{
 	public:
-		void Init();
-		void ShutDown();
-		
+		bool Initialize()
+		{
+			//TODO : thingking syntax move Init
+			constexpr int kMaxParticleCount = 8000;
+
+
+			m_renderer = EffekseerRendererGL::Renderer::Create(
+				kMaxParticleCount,
+				EffekseerRendererGL::OpenGLDeviceType::OpenGL3); //TODO : user would like wanna change opengl version...
+
+			if (m_renderer == nullptr)
+			{
+				TraceLog(LOG_ERROR, "EffekseerRendererGL initialization failed");
+				return false;
+			}
+
+			m_manager = Effekseer::Manager::Create(kMaxParticleCount);
+			if (m_manager == nullptr)
+			{
+				TraceLog(LOG_ERROR, "Effekseer manager initialization failed");
+				return false;
+			}
+
+
+
+			//Set Effekseer Renderers
+			m_manager->SetSpriteRenderer(m_renderer->CreateSpriteRenderer());
+			m_manager->SetRibbonRenderer(m_renderer->CreateRibbonRenderer());
+			m_manager->SetRingRenderer(m_renderer->CreateRingRenderer());
+			m_manager->SetTrackRenderer(m_renderer->CreateTrackRenderer());
+			m_manager->SetModelRenderer(m_renderer->CreateModelRenderer());
+
+			//Set Effekseer Loaders
+			m_manager->SetTextureLoader(m_renderer->CreateTextureLoader());
+			m_manager->SetModelLoader(m_renderer->CreateModelLoader());
+			m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
+			m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
+
+		}
+		void ShutDown()
+		{
+			m_manager->StopAllEffects();
+		}
+
+
 		//lifecycle
-		void Update();
-		void Draw();
+		void Update(float dt)
+		{
+			m_manager->Update(dt/*GetFrameTime() * 60.0f*/);
+		}
+		void Draw() const
+		{
+			rlDrawRenderBatchActive();
+			m_renderer->ResetRenderState();
+			m_renderer->BeginRendering();
+			m_manager->Draw();
+			m_renderer->EndRendering();
+
+		}
 		bool Exits(); //TODO : handleぶちこむ
 		
 		void StopEffect(); //TODO : handleぶちこむ
