@@ -135,11 +135,12 @@ namespace Rayseer
 	class RaySeerContext
 	{
 	public:
-		bool Initialize()
+		bool Initialize(int kMaxParticleCount = 8000)
 		{
 			//TODO : thingking syntax move Init
-			constexpr int kMaxParticleCount = 8000;
+			int kMaxParticleCount_ = kMaxParticleCount;
 
+			
 
 			m_renderer = EffekseerRendererGL::Renderer::Create(
 				kMaxParticleCount,
@@ -148,6 +149,7 @@ namespace Rayseer
 			if (m_renderer == nullptr)
 			{
 				TraceLog(LOG_ERROR, "EffekseerRendererGL initialization failed");
+				IsInitialize = false;
 				return false;
 			}
 
@@ -157,6 +159,7 @@ namespace Rayseer
 			if (m_manager == nullptr)
 			{
 				TraceLog(LOG_ERROR, "Effekseer manager initialization failed");
+				IsInitialize = false;
 				return false;
 			}
 
@@ -174,6 +177,9 @@ namespace Rayseer
 			m_manager->SetMaterialLoader(m_renderer->CreateMaterialLoader());
 			m_manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
+			IsInitialize = true;
+
+			return true;
 		}
 		void ShutDown()
 		{
@@ -186,13 +192,17 @@ namespace Rayseer
 		{
 			m_manager->Update(dt/*GetFrameTime() * 60.0f*/);
 		}
-		void Draw() const
+		void Draw(const Camera3D& camera) const
 		{
 			rlDrawRenderBatchActive();
+			g_RaySeerContext.SetEffekseerCamera(camera);
 			m_renderer->ResetRenderState();
 			m_renderer->BeginRendering();
 			m_manager->Draw();
 			m_renderer->EndRendering();
+			//深度テストの有効化にしないとおかしくなる(最大化などのウィンドウリサイズ時)
+			rlEnableDepthTest();
+			rlEnableDepthMask();
 
 		}
 		bool Exits(); //TODO : handleぶちこむ
@@ -206,19 +216,55 @@ namespace Rayseer
 		void SetScale(Vector3 scale);
 
 
+		inline void SetEffekseerCamera(const Camera3D& camera)
+		{
+			const int renderWidth = GetRenderWidth();
+			const int renderHeight = GetRenderHeight();
+			const float aspect = renderHeight > 0 ? static_cast<float>(renderWidth) / static_cast<float>(renderHeight) : 1.0f;
+
+			m_renderer->SetProjectionMatrix(
+				Effekseer::Matrix44().PerspectiveFovRH_OpenGL(
+					camera.fovy * DEG2RAD,
+					aspect,
+					RL_CULL_DISTANCE_NEAR,
+					RL_CULL_DISTANCE_FAR));
+
+			m_renderer->SetCameraMatrix(
+				Effekseer::Matrix44().LookAtRH(
+					Effekseer::Vector3D(camera.position.x, camera.position.y, camera.position.z),
+					Effekseer::Vector3D(camera.target.x, camera.target.y, camera.target.z),
+					Effekseer::Vector3D(camera.up.x, camera.up.y, camera.up.z)));
+		}
+
 		EffekseerRendererGL::RendererRef GetNativeRendererRef() { return m_renderer; }
 		Effekseer::ManagerRef GetNativeManagerRef() { return m_manager; }
+
+
+		//helper
+		//TODO : 今のところ初期化しているかどうかのチェックのみ
+		explicit operator bool() const
+		{
+			return IsInitialize;
+		}
 
 	private:
 		EffekseerRendererGL::RendererRef m_renderer;
 		Effekseer::ManagerRef			 m_manager;
+		bool IsInitialize = false;
 		
 	};
 
 
 
 
-
+	//========================================================
+	// 
+	// 
+	// Simple API
+	// 
+	// 
+	// 
+	//========================================================
 
 
 	//global variable
@@ -229,14 +275,14 @@ namespace Rayseer
 	//NOTE : 
 
 	//TODO : inline 変数のconstepxrにするか検討中(17以上)
-	inline bool InitializeRaySeer()
+	inline bool InitializeRaySeer(int kMaxParticleCount = 8000)
 	{
-	   g_RaySeerContext.Initialize();
+		g_RaySeerContext.Initialize(kMaxParticleCount);
 	}
 
 	inline void ShutdownRaySeer()
 	{
-
+		g_RaySeerContext.ShutDown();
 	}
 
 	//TODO : change place define to detail namespace
@@ -293,8 +339,17 @@ namespace Rayseer
 
 	}
 
+	inline void Update(float deltaTime) 
+	{
+		g_RaySeerContext.Update(deltaTime);
+	}
 
+	inline void Draw(const Camera3D& camera)
+	{
+		g_RaySeerContext.Draw(camera);
+	}
 
+	//Native(low) api
 	inline void SetRayseerCamera3D(const Camera3D& camera)
 	{
 		const int renderWidth = GetRenderWidth();
@@ -304,7 +359,7 @@ namespace Rayseer
 
 		auto renderer = g_RaySeerContext.GetNativeRendererRef();
 	
-		//クラッシュ防止/早期描画
+		//クラッシュ防止/早期描画キャンセル
 		if (!renderer) {
 			TraceLog(LOG_WARNING, "Rayseer renderer is nullptr!");
 			//TODO : ここにわかりやすいように初期されているかとか詳細に。
@@ -324,6 +379,13 @@ namespace Rayseer
 				Effekseer::Vector3D(camera.position.x, camera.position.y, camera.position.z),
 				Effekseer::Vector3D(camera.target.x, camera.target.y, camera.target.z),
 				Effekseer::Vector3D(camera.up.x, camera.up.y, camera.up.z)));
+
+
+	}
+
+	inline void SetRayseerCamera3D(const Camera3D& camera, RaySeerContext& context)
+	{
+		context.SetEffekseerCamera(camera);
 	}
 
 	inline void SetRayseerCamera2D(const Camera2D& camera)
