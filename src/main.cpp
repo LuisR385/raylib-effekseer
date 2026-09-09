@@ -153,8 +153,6 @@ int RunExample()
         ClearBackground(Color{18, 20, 26, 255});
 
         BeginMode3D(camera);
-        DrawGrid(20, 1.0f);
-        DrawSphere(Vector3{0.0f, kEffectHeight, 0.0f}, 0.08f, RED);
 
         // raylib が溜めている頂点を先に描き切ってから、生 OpenGL の
         // EffekseerRendererGL に描画を渡す。

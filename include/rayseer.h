@@ -296,11 +296,87 @@ namespace Rayseer
 
 	inline void SetRayseerCamera3D(const Camera3D& camera)
 	{
+		const int renderWidth = GetRenderWidth();
+		const int renderHeight = GetRenderHeight();
+		const float aspect = renderHeight > 0 ? static_cast<float>(renderWidth) / static_cast<float>(renderHeight) : 1.0f;
 
+
+		auto renderer = g_RaySeerContext.GetNativeRendererRef();
+	
+		renderer->SetProjectionMatrix(
+			Effekseer::Matrix44().PerspectiveFovRH_OpenGL(
+				camera.fovy * DEG2RAD,
+				aspect,
+				RL_CULL_DISTANCE_NEAR,
+				RL_CULL_DISTANCE_FAR));
+
+		renderer->SetCameraMatrix(
+			Effekseer::Matrix44().LookAtRH(
+				Effekseer::Vector3D(camera.position.x, camera.position.y, camera.position.z),
+				Effekseer::Vector3D(camera.target.x, camera.target.y, camera.target.z),
+				Effekseer::Vector3D(camera.up.x, camera.up.y, camera.up.z)));
 	}
 
 	inline void SetRayseerCamera2D(const Camera2D& camera)
 	{
+		const int renderWidth = GetRenderWidth();
+		const int renderHeight = GetRenderHeight();
+		const float aspect = renderHeight > 0 ? static_cast<float>(renderWidth) / static_cast<float>(renderHeight) : 1.0f;
+
+
+		auto renderer = g_RaySeerContext.GetNativeRendererRef();
+
+		Effekseer::Matrix44 projection;
+		projection.OrthographicRH(
+			static_cast<float>(renderWidth),
+			static_cast<float>(renderHeight),
+			-1000.0f,
+			1000.0f);
+		
+		const float rad = camera.rotation * DEG2RAD;
+		const float s = std::sin(rad);
+		const float c = std::cos(rad);
+
+		Effekseer::Matrix44 cameraMatrix;
+		cameraMatrix.Indentity();
+
+		//zoom + rotation
+		cameraMatrix.Values[0][0] = c * camera.zoom;
+		cameraMatrix.Values[0][1] = -s * camera.zoom;
+
+		cameraMatrix.Values[1][0] = c * camera.zoom;
+		cameraMatrix.Values[1][1] = -s * camera.zoom;
+
+		//
+   // target を原点側へ移動
+   //
+		cameraMatrix.Values[3][0] =
+			-(camera.target.x * cameraMatrix.Values[0][0]
+				+ camera.target.y * cameraMatrix.Values[1][0]);
+
+		cameraMatrix.Values[3][1] =
+			-(camera.target.x * cameraMatrix.Values[0][1]
+				+ camera.target.y * cameraMatrix.Values[1][1]);
+
+		//
+		// raylib Camera2D.offset
+		//
+		// OrthographicRH が画面中央基準なので、
+		// offset を中央との差分として扱う
+		//
+		cameraMatrix.Values[3][0] +=
+			camera.offset.x - static_cast<float>(renderWidth) * 0.5f;
+
+		cameraMatrix.Values[3][1] +=
+			camera.offset.y - static_cast<float>(renderHeight) * 0.5f;
+
+		renderer->SetCameraMatrix(cameraMatrix);
+		renderer->SetProjectionMatrix(projection);
+
+		// 2Dなのでカメラ方向は固定
+		renderer->SetCameraParameter(
+			Effekseer::Vector3D{ 0.0f, 0.0f, 1.0f },
+			Effekseer::Vector3D{ 0.0f, 0.0f, 0.0f });
 
 	}
 
