@@ -137,38 +137,90 @@ int RunExample()
 
     while (!WindowShouldClose())
     {
-
         if (IsKeyPressed(KEY_SPACE) || !manager->Exists(handle))
         {
             if (manager->Exists(handle))
             {
                 manager->StopEffect(handle);
             }
-            handle = manager->Play(effect, 0.0f, kEffectHeight, 0.0f);
+
+            handle = manager->Play(
+                effect,
+                0.0f,
+                kEffectHeight,
+                0.0f
+            );
         }
 
-        // Effekseer の標準時間単位は 60 fps 基準の「フレーム」。
+        // Effekseer update
         manager->Update(GetFrameTime() * 60.0f);
-        SetEffekseerCamera(renderer, camera);
 
         BeginDrawing();
-        ClearBackground(Color{18, 20, 26, 255});
+
+        ClearBackground(Color{ 18, 20, 26, 255 });
 
         BeginMode3D(camera);
 
-        // raylib が溜めている頂点を先に描き切ってから、生 OpenGL の
-        // EffekseerRendererGL に描画を渡す。
+        //
+        // raylib側が正常か確認
+        //
+        DrawGrid(10, 1.0f);
+
+        //
+        // raylib -> Effekseer
+        //
         rlDrawRenderBatchActive();
+
+        SetEffekseerCamera(renderer, camera);
+
+        //
+        // Effekseer用
+        //
         renderer->ResetRenderState();
+
         renderer->BeginRendering();
         manager->Draw();
         renderer->EndRendering();
 
+        
+        //深度テストの有効化
+        rlEnableDepthTest();
+        rlEnableDepthMask();
+
+        //
+        // Effekseerの後にraylib 3Dを描いてみよう
+        //
+        DrawCube(
+            Vector3{ 0.0f, 1.0f, 0.0f },
+            1.0f,
+            1.0f,
+            1.0f,
+            RED
+        );
+
+        DrawGrid(10, 1.0f);
+
+
         EndMode3D();
 
-        DrawText("raylib 6.0 + Effekseer", 20, 20, 24, RAYWHITE);
-        DrawText("SPACE: replay FireBall", 20, 52, 18, LIGHTGRAY);
+        DrawText(
+            "raylib 6.0 + Effekseer",
+            20,
+            20,
+            24,
+            RAYWHITE
+        );
+
+        DrawText(
+            "SPACE: replay FireBall",
+            20,
+            52,
+            18,
+            LIGHTGRAY
+        );
+
         DrawFPS(20, 82);
+
         EndDrawing();
     }
 
