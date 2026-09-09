@@ -486,7 +486,7 @@ namespace Rayseer
 	//TODO : inline 変数のconstepxrにするか検討中(17以上)
 	inline bool InitializeRaySeer(int kMaxParticleCount = 8000)
 	{
-		g_context.Initialize(kMaxParticleCount);
+		return g_context.Initialize(kMaxParticleCount);
 	}
 
 	inline void ShutdownRaySeer()
