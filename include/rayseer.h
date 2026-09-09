@@ -43,6 +43,159 @@ namespace Rayseer
 {
 
 
+	inline std::u16string Utf8ToUtf16(const char* text)
+	{
+		if (text == nullptr)
+			return {};
+
+		std::u16string result;
+
+		const unsigned char* p =
+			reinterpret_cast<const unsigned char*>(text);
+
+		while (*p != '\0')
+		{
+			uint32_t cp = 0;
+
+			if (*p < 0x80)
+			{
+				cp = *p++;
+			}
+			else if ((*p & 0xE0) == 0xC0)
+			{
+				if (p[1] == 0)
+					return {};
+
+				cp =
+					((p[0] & 0x1F) << 6) |
+					(p[1] & 0x3F);
+
+				p += 2;
+			}
+			else if ((*p & 0xF0) == 0xE0)
+			{
+				if (p[1] == 0 || p[2] == 0)
+					return {};
+
+				cp =
+					((p[0] & 0x0F) << 12) |
+					((p[1] & 0x3F) << 6) |
+					(p[2] & 0x3F);
+
+				p += 3;
+			}
+			else if ((*p & 0xF8) == 0xF0)
+			{
+				if (p[1] == 0 ||
+					p[2] == 0 ||
+					p[3] == 0)
+				{
+					return {};
+				}
+
+				cp =
+					((p[0] & 0x07) << 18) |
+					((p[1] & 0x3F) << 12) |
+					((p[2] & 0x3F) << 6) |
+					(p[3] & 0x3F);
+
+				p += 4;
+			}
+			else
+			{
+				return {};
+			}
+
+			// UTF-16 BMP
+			if (cp <= 0xFFFF)
+			{
+				// surrogate領域そのものは不正
+				if (cp >= 0xD800 && cp <= 0xDFFF)
+					return {};
+
+				result.push_back(
+					static_cast<char16_t>(cp)
+				);
+			}
+			// surrogate pair
+			else if (cp <= 0x10FFFF)
+			{
+				cp -= 0x10000;
+
+				result.push_back(
+					static_cast<char16_t>(
+						0xD800 + (cp >> 10)
+						)
+				);
+
+				result.push_back(
+					static_cast<char16_t>(
+						0xDC00 + (cp & 0x3FF)
+						)
+				);
+			}
+			else
+			{
+				return {};
+			}
+		}
+		return result;
+	}
+
+
+
+
+	//TODO : change place define to detail namespace
+	//for effekseer->raylib encoding
+	inline std::string Utf16ToUtf8(const char16_t* text)
+	{
+		if (text == nullptr)
+			return {};
+
+		std::vector<int> codepoints;
+
+		for (std::size_t i = 0; text[i] != u'\0'; ++i)
+		{
+			uint32_t cp = text[i];
+
+			// UTF-16 surrogate pair
+			if (cp >= 0xD800 && cp <= 0xDBFF)
+			{
+				const uint32_t low = text[i + 1];
+
+				if (low >= 0xDC00 && low <= 0xDFFF)
+				{
+					cp =
+						0x10000 +
+						((cp - 0xD800) << 10) +
+						(low - 0xDC00);
+
+					++i;
+				}
+			}
+
+			codepoints.push_back(static_cast<int>(cp));
+		}
+
+		char* utf8 = LoadUTF8(
+			codepoints.data(),
+			static_cast<int>(codepoints.size())
+		);
+
+		//check
+		if (utf8 == nullptr)
+			return {};
+
+		std::string result = utf8;
+
+		UnloadUTF8(utf8);
+
+		return result;
+	}
+
+
+
+
 	//define class
 	class RaySeerContext;
 	class RaySeerEffectAsset;
@@ -55,82 +208,9 @@ namespace Rayseer
 	struct EffectHandle;
 	struct State;
 
-	//TODO : バージョンを選択できるようにする
-	/*enum class OPENGLVERSION : uint8_t
-	{
-
-	};*/
-
-	struct EffectHandle
-	{
-	public:
-		Effekseer::Handle value = -1; //effectHandle Value
-
-		bool IsValid() const 
-		{
-			return value >= 0;
-		}
-
-		bool IsPlaying(const Effekseer::ManagerRef& manager) const
-		{
-			if (!IsValid() || !manager) { return false; }
-			return manager->Exists(value);
-		}
-
-		//Ideas? for operator bool helper...
-		explicit operator bool() const
-		{
-			return IsValid();
-		}
-
-
-	private:
 
 
 
-	};
-
-
-	class RaySeerEffectAsset
-	{
-	public:
-		RaySeerEffectAsset() = default;
-		~RaySeerEffectAsset() = default;
-
-		RaySeerEffectAsset(const char* path)
-		{
-			Load(path);
-		}
-
-		using RSEffectAsset = RaySeerEffectAsset;
-
-		
-		bool Load(const char* path)
-		{
-
-			if (!path) { return false; }
-
-			//TODO : utf16->utf8 encoding.
-			//TODO : Create Effect
-
-			//when not succeuss return false.
-			return false;
-		}
-		
-		//RaySeerEffectAsset bool check helper
-		operator bool() const
-		{
-			return m_isvalid;
-		}
-		
-
-	private:
-		Effekseer::EffectRef effect;
-		bool m_isvalid = true;
-	};
-
-
-	//info some class
 
 	class RaySeerContext
 	{
@@ -140,7 +220,7 @@ namespace Rayseer
 			//TODO : thingking syntax move Init
 			int kMaxParticleCount_ = kMaxParticleCount;
 
-			
+
 
 			m_renderer = EffekseerRendererGL::Renderer::Create(
 				kMaxParticleCount,
@@ -192,31 +272,9 @@ namespace Rayseer
 		{
 			m_manager->Update(dt/*GetFrameTime() * 60.0f*/);
 		}
-		void Draw(const Camera3D& camera) const
-		{
-			rlDrawRenderBatchActive();
-			g_RaySeerContext.SetEffekseerCamera(camera);
-			m_renderer->ResetRenderState();
-			m_renderer->BeginRendering();
-			m_manager->Draw();
-			m_renderer->EndRendering();
-			//深度テストの有効化にしないとおかしくなる(最大化などのウィンドウリサイズ時)
-			rlEnableDepthTest();
-			rlEnableDepthMask();
-
-		}
-		bool Exits(); //TODO : handleぶちこむ
-		
-		void StopEffect(); //TODO : handleぶちこむ
-		void Play();
-		
-		//TODO : change to place this API function. EffectInstance API
-		void SetPosition(Vector3 pos);
-		void SetRotation(Vector3 rot);
-		void SetScale(Vector3 scale);
 
 
-		inline void SetEffekseerCamera(const Camera3D& camera)
+		inline void SetEffekseerCamera(const Camera3D& camera)const
 		{
 			const int renderWidth = GetRenderWidth();
 			const int renderHeight = GetRenderHeight();
@@ -236,6 +294,33 @@ namespace Rayseer
 					Effekseer::Vector3D(camera.up.x, camera.up.y, camera.up.z)));
 		}
 
+
+		void Draw(const Camera3D& camera) const
+		{
+			rlDrawRenderBatchActive();
+			SetEffekseerCamera(camera);
+			m_renderer->ResetRenderState();
+			m_renderer->BeginRendering();
+			m_manager->Draw();
+			m_renderer->EndRendering();
+			//深度テストの有効化にしないとおかしくなる(最大化などのウィンドウリサイズ時)
+			rlEnableDepthTest();
+			rlEnableDepthMask();
+
+		}
+		bool Exits(); //TODO : handleぶちこむ
+
+		void StopEffect(); //TODO : handleぶちこむ
+		void Play();
+
+		//TODO : change to place this API function. EffectInstance API
+		void SetPosition(Vector3 pos);
+		void SetRotation(Vector3 rot);
+		void SetScale(Vector3 scale);
+
+
+
+
 		EffekseerRendererGL::RendererRef GetNativeRendererRef() { return m_renderer; }
 		Effekseer::ManagerRef GetNativeManagerRef() { return m_manager; }
 
@@ -251,8 +336,132 @@ namespace Rayseer
 		EffekseerRendererGL::RendererRef m_renderer;
 		Effekseer::ManagerRef			 m_manager;
 		bool IsInitialize = false;
-		
+
 	};
+
+
+
+
+
+
+	RaySeerContext g_context;
+
+	//TODO : バージョンを選択できるようにする
+	/*enum class OPENGLVERSION : uint8_t
+	{
+
+	};*/
+
+	struct EffectHandle
+	{
+	public:
+
+		bool IsValid() const 
+		{
+			return m_isValid;
+		}
+
+		bool IsPlaying(const Effekseer::ManagerRef& manager) const
+		{
+			if (!IsValid() || !manager) { return false; }
+			return manager->Exists(m_isValid);
+		}
+
+		//utf8限定
+		bool Load(const char* path)
+		{
+			if (!path) {
+				return false;
+			}
+
+			std::u16string u16path = Utf8ToUtf16(path);
+
+			if (u16path.empty())
+				return false;
+
+			auto manager =
+				g_context.GetNativeManagerRef();
+
+			if (!manager)
+				return false;
+
+			m_effect =
+				Effekseer::Effect::Create(
+					manager,
+					u16path.c_str()
+				);
+
+
+			//これと同じ意味 - > m_isValid = (m_effect != nullptr);
+			if (m_effect == nullptr)
+			{
+				m_isValid = false;
+			}
+			else {
+				m_isValid = true;
+			}
+
+
+			return true;
+		}
+
+		//Ideas? for operator bool helper...
+		explicit operator bool() const
+		{
+			return IsValid();
+		}
+
+
+	private:
+		Effekseer::EffectRef m_effect; //effectHandle(ref) Value
+		bool m_isValid = false;
+
+
+	};
+
+
+	class RaySeerEffectAsset
+	{
+	public:
+		RaySeerEffectAsset() = default;
+		~RaySeerEffectAsset() = default;
+
+		RaySeerEffectAsset(const char* path)
+		{
+			Load(path);
+		}
+
+		using RSEffectAsset = RaySeerEffectAsset;
+
+		
+		bool Load(const char* path)
+		{
+
+			if (!path) { return false; }
+			
+			//TODO : utf16->utf8 encoding.
+			//TODO : Create Effect
+
+			//when not succeuss return false.
+			return false;
+		}
+		
+		//RaySeerEffectAsset bool check helper
+		operator bool() const
+		{
+			return m_isvalid;
+		}
+		
+
+	private:
+		Effekseer::EffectRef effect;
+		bool m_isvalid = false;
+	};
+
+
+	//info some class
+
+	
 
 
 
@@ -277,61 +486,14 @@ namespace Rayseer
 	//TODO : inline 変数のconstepxrにするか検討中(17以上)
 	inline bool InitializeRaySeer(int kMaxParticleCount = 8000)
 	{
-		g_RaySeerContext.Initialize(kMaxParticleCount);
+		g_context.Initialize(kMaxParticleCount);
 	}
 
 	inline void ShutdownRaySeer()
 	{
-		g_RaySeerContext.ShutDown();
+		g_context.ShutDown();
 	}
 
-	//TODO : change place define to detail namespace
-	//for effekseer->raylib encoding
-	inline std::string Utf16ToUtf8(const char16_t* text)
-	{
-		if (text == nullptr)
-			return {};
-
-		std::vector<int> codepoints;
-
-		for (std::size_t i = 0; text[i] != u'\0'; ++i)
-		{
-			uint32_t cp = text[i];
-
-			// UTF-16 surrogate pair
-			if (cp >= 0xD800 && cp <= 0xDBFF)
-			{
-				const uint32_t low = text[i + 1];
-
-				if (low >= 0xDC00 && low <= 0xDFFF)
-				{
-					cp =
-						0x10000 +
-						((cp - 0xD800) << 10) +
-						(low - 0xDC00);
-
-					++i;
-				}
-			}
-
-			codepoints.push_back(static_cast<int>(cp));
-		}
-
-		char* utf8 = LoadUTF8(
-			codepoints.data(),
-			static_cast<int>(codepoints.size())
-		);
-
-		//check
-		if (utf8 == nullptr)
-			return {};
-
-		std::string result = utf8;
-
-		UnloadUTF8(utf8);
-
-		return result;
-	}
 
 
 	inline void CreateEffect()
@@ -341,12 +503,12 @@ namespace Rayseer
 
 	inline void Update(float deltaTime) 
 	{
-		g_RaySeerContext.Update(deltaTime);
+		g_context.Update(deltaTime);
 	}
 
 	inline void Draw(const Camera3D& camera)
 	{
-		g_RaySeerContext.Draw(camera);
+		g_context.Draw(camera);
 	}
 
 	//Native(low) api
@@ -357,7 +519,7 @@ namespace Rayseer
 		const float aspect = renderHeight > 0 ? static_cast<float>(renderWidth) / static_cast<float>(renderHeight) : 1.0f;
 
 
-		auto renderer = g_RaySeerContext.GetNativeRendererRef();
+		auto renderer = g_context.GetNativeRendererRef();
 	
 		//クラッシュ防止/早期描画キャンセル
 		if (!renderer) {
