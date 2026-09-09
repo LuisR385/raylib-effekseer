@@ -151,13 +151,14 @@ namespace Rayseer
 				return false;
 			}
 
+			m_renderer->SetRestorationOfStatesFlag(true);
+
 			m_manager = Effekseer::Manager::Create(kMaxParticleCount);
 			if (m_manager == nullptr)
 			{
 				TraceLog(LOG_ERROR, "Effekseer manager initialization failed");
 				return false;
 			}
-
 
 
 			//Set Effekseer Renderers
@@ -228,9 +229,9 @@ namespace Rayseer
 	//NOTE : 
 
 	//TODO : inline 変数のconstepxrにするか検討中(17以上)
-	inline void InitializeRaySeer()
+	inline bool InitializeRaySeer()
 	{
-
+	   g_RaySeerContext.Initialize();
 	}
 
 	inline void ShutdownRaySeer()
