@@ -381,15 +381,17 @@ namespace Rayseer
 	}
 
 	//auto resize
+	//use to raylib bool api of "IsWindowResized()"
 	inline void Resize()
 	{
+		const int width = GetRenderWidth();
+		const int height = GetRenderHeight();
 
-	}
+		if (width <= 0 || height <= 0)
+			return;
 
-	inline void Resize(
-		int width = GetRenderWidth(), 
-		int height = GetRenderHeight())
-	{
+		rlDrawRenderBatchActive();
+		rlViewport(0, 0, width, height);
 
 	}
 

@@ -89,6 +89,8 @@ int RunExample()
         return 1;
     }
 
+    renderer->SetRestorationOfStatesFlag(true);
+
     auto manager = Effekseer::Manager::Create(kMaxParticleCount);
     if (manager == nullptr)
     {
