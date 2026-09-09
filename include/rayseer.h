@@ -222,7 +222,7 @@ namespace Rayseer
 
 	//global variable
 	//NOTE : because for do one single header / easy to way simple api 
-
+	//メモ : グローバルな理由は使いやすさ重視のためです。
 	inline Rayseer::RaySeerContext g_RaySeerContext;
 
 	//NOTE : 
@@ -303,6 +303,14 @@ namespace Rayseer
 
 		auto renderer = g_RaySeerContext.GetNativeRendererRef();
 	
+		//クラッシュ防止/早期描画
+		if (!renderer) {
+			TraceLog(LOG_WARNING, "Rayseer renderer is nullptr!");
+			//TODO : ここにわかりやすいように初期されているかとか詳細に。
+			return;
+		}
+
+
 		renderer->SetProjectionMatrix(
 			Effekseer::Matrix44().PerspectiveFovRH_OpenGL(
 				camera.fovy * DEG2RAD,

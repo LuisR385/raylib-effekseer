@@ -16,6 +16,8 @@
 #include <system_error>
 #include <vector>
 
+#include "rayseer.h"
+
 //NOTE : 
 namespace
 {
@@ -172,6 +174,7 @@ int RunExample()
         rlDrawRenderBatchActive();
 
         SetEffekseerCamera(renderer, camera);
+        //Rayseer::SetRayseerCamera3D(camera);
 
         //
         // Effekseer用
