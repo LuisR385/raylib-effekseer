@@ -823,6 +823,14 @@ private:
     bool m_isInitialized = false;
 };
 
+
+struct EffectTransform
+{
+    Vector3 position = { 0.0f,0.0f,0.0f };
+    Vector3 scale = { 0.0f,0.0f,0.0f };
+    Vector3 rotation = { 0.0f,0.0f,0.0f };
+};
+
 // Simple API shared context. This is intentionally a C++17 inline global,
 // not a Singleton and not a function-local static.
 // シングルトンにしなかったのはraylib起動している間はずっと生きているし
