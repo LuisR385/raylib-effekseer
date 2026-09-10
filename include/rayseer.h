@@ -825,18 +825,23 @@ private:
 
 // Simple API shared context. This is intentionally a C++17 inline global,
 // not a Singleton and not a function-local static.
+// シングルトンにしなかったのはraylib起動している間はずっと生きているし
+// 複数持たせることができることからという利点をもたらせるためです。
 inline RaySeerContext g_context;
 
+//初期化
 inline bool Initialize(int maxParticleCount = 8000)
 {
     return g_context.Initialize(maxParticleCount);
 }
 
+//release
 inline void Shutdown()
 {
     g_context.Shutdown();
 }
 
+//初期化(本体のみ使用したい場合はこれを使用する)
 inline bool InitializeRaySeer(int maxParticleCount = 8000)
 {
     return Initialize(maxParticleCount);
