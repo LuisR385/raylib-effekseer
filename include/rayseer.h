@@ -950,6 +950,74 @@ inline bool SetRayseerCamera2D(const Camera2D& camera)
 inline void Resize() noexcept
 {
 }
+
+EffectHandle PlayEffect(
+    const EffectAsset& asset,
+    const EffectTransform& transform = {})
+{
+
+}
+
+bool SetEffectTransform(
+    EffectHandle handle,
+    const EffectTransform& transform)
+{
+
+}
+
+bool SetEffectMatrix(
+    EffectHandle handle,
+    const Matrix& matrix)
+{
+
+}
+
+bool SetEffectTarget(
+    EffectHandle handle,
+    Vector3 target)
+{
+
+}
+
+/* dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
+
+bool SetEffectColor(
+    EffectHandle handle,
+    Color color)
+{
+
+}
+
+bool SetEffectPaused(
+    EffectHandle handle,
+    bool paused)
+{
+
+}
+
+bool SetEffectVisible(
+    EffectHandle handle,
+    bool visible)
+{
+
+}
+
+bool SetEffectDynamicInput(
+    EffectHandle handle,
+    int index,
+    float value)
+{
+
+}
+
+bool SendEffectTrigger(
+    EffectHandle handle,
+    int index)
+{
+
+}
+ */
+
 } // namespace Rayseer
 
 #endif // RAYSEER_H
