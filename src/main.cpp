@@ -1,22 +1,9 @@
-#if defined(_WIN32)
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN
-// windows.h の Rectangle/DrawText/CloseWindow と raylib の衝突を避ける。
-#define NOGDI
-#define NOUSER
-#endif
-
-#include <Effekseer.h>
-#include <EffekseerRendererGL.h>
-#include <raylib.h>
-#include <rlgl.h>
+#include "rayseer.h"
 
 #include <filesystem>
 #include <optional>
 #include <system_error>
 #include <vector>
-
-#include "rayseer.h"
 
 //NOTE : 
 namespace
@@ -60,73 +47,28 @@ std::optional<std::filesystem::path> FindFireBall()
     return std::nullopt;
 }
 
-void SetEffekseerCamera(const EffekseerRendererGL::RendererRef& renderer, const Camera3D& camera)
-{
-    const int renderWidth = GetRenderWidth();
-    const int renderHeight = GetRenderHeight();
-    const float aspect = renderHeight > 0 ? static_cast<float>(renderWidth) / static_cast<float>(renderHeight) : 1.0f;
-
-    renderer->SetProjectionMatrix(
-        Effekseer::Matrix44().PerspectiveFovRH_OpenGL(
-            camera.fovy * DEG2RAD,
-            aspect,
-            RL_CULL_DISTANCE_NEAR,
-            RL_CULL_DISTANCE_FAR));
-
-    renderer->SetCameraMatrix(
-        Effekseer::Matrix44().LookAtRH(
-            Effekseer::Vector3D(camera.position.x, camera.position.y, camera.position.z),
-            Effekseer::Vector3D(camera.target.x, camera.target.y, camera.target.z),
-            Effekseer::Vector3D(camera.up.x, camera.up.y, camera.up.z)));
-}
-
 int RunExample()
 {
-    auto renderer = EffekseerRendererGL::Renderer::Create(
-        kMaxParticleCount,
-        EffekseerRendererGL::OpenGLDeviceType::OpenGL3);
-    if (renderer == nullptr)
+    if (!Rayseer::Initialize(kMaxParticleCount))
     {
-        TraceLog(LOG_ERROR, "EffekseerRendererGL initialization failed");
         return 1;
     }
-
-    renderer->SetRestorationOfStatesFlag(true);
-
-    auto manager = Effekseer::Manager::Create(kMaxParticleCount);
-    if (manager == nullptr)
-    {
-        TraceLog(LOG_ERROR, "Effekseer manager initialization failed");
-        return 1;
-    }
-
-    manager->SetSpriteRenderer(renderer->CreateSpriteRenderer());
-    manager->SetRibbonRenderer(renderer->CreateRibbonRenderer());
-    manager->SetRingRenderer(renderer->CreateRingRenderer());
-    manager->SetTrackRenderer(renderer->CreateTrackRenderer());
-    manager->SetModelRenderer(renderer->CreateModelRenderer());
-
-    manager->SetTextureLoader(renderer->CreateTextureLoader());
-    manager->SetModelLoader(renderer->CreateModelLoader());
-    manager->SetMaterialLoader(renderer->CreateMaterialLoader());
-    manager->SetCurveLoader(Effekseer::MakeRefPtr<Effekseer::CurveLoader>());
 
     const auto effectPath = FindFireBall();
     if (!effectPath)
     {
         TraceLog(LOG_ERROR, "resource/FireBall.efkefc was not found");
+        Rayseer::Shutdown();
         return 1;
     }
 
-    const std::u16string effectPath16 = effectPath->u16string();
-    auto effect = Effekseer::Effect::Create(manager, effectPath16.c_str());
-    if (effect == nullptr)
+    Rayseer::EffectAsset effect = Rayseer::LoadEffect(*effectPath);
+    if (!Rayseer::IsEffectLoaded(effect))
     {
         TraceLog(LOG_ERROR, "Failed to load FireBall.efkefc");
+        Rayseer::Shutdown();
         return 1;
     }
-
-    TraceLog(LOG_INFO, "Loaded effect: %s", effectPath->string().c_str());
 
     Camera3D camera{};
     camera.position = Vector3{8.0f, 6.0f, 10.0f};
@@ -135,76 +77,28 @@ int RunExample()
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
-    Effekseer::Handle handle = manager->Play(effect, 0.0f, kEffectHeight, 0.0f);
+    Rayseer::EffectHandle handle = Rayseer::PlayEffect(
+        effect,
+        Vector3{0.0f, kEffectHeight, 0.0f});
 
     while (!WindowShouldClose())
     {
-        if (IsKeyPressed(KEY_SPACE) || !manager->Exists(handle))
+        if (IsKeyPressed(KEY_SPACE) || !Rayseer::IsEffectPlaying(handle))
         {
-            if (manager->Exists(handle))
-            {
-                manager->StopEffect(handle);
-            }
-
-            handle = manager->Play(
+            Rayseer::StopEffect(handle);
+            handle = Rayseer::PlayEffect(
                 effect,
-                0.0f,
-                kEffectHeight,
-                0.0f
-            );
+                Vector3{0.0f, kEffectHeight, 0.0f});
         }
 
-        // Effekseer update
-        manager->Update(GetFrameTime() * 60.0f);
+        Rayseer::Update(GetFrameTime());
 
         BeginDrawing();
+        ClearBackground(Color{18, 20, 26, 255});
 
-        ClearBackground(Color{ 18, 20, 26, 255 });
-
-        BeginMode3D(camera);
-
-        //
-        // raylib側が正常か確認
-        //
-        DrawGrid(10, 1.0f);
-
-        //
-        // raylib -> Effekseer
-        //
-        rlDrawRenderBatchActive();
-
-        SetEffekseerCamera(renderer, camera);
-        //Rayseer::SetRayseerCamera3D(camera);
-
-        //
-        // Effekseer用
-        //
-        renderer->ResetRenderState();
-
-        renderer->BeginRendering();
-        manager->Draw();
-        renderer->EndRendering();
-
-        
-        //深度テストの有効化
-        rlEnableDepthTest();
-        rlEnableDepthMask();
-
-        //
-        // Effekseerの後にraylib 3Dを描いてみよう
-        //
-        DrawCube(
-            Vector3{ 0.0f, 1.0f, 0.0f },
-            1.0f,
-            1.0f,
-            1.0f,
-            RED
-        );
-
-        DrawGrid(10, 1.0f);
-
-
-        EndMode3D();
+        // Rayseer owns the renderer boundary. Do not call this between
+        // BeginMode3D() and EndMode3D().
+        Rayseer::Draw(camera);
 
         DrawText(
             "raylib 6.0 + Effekseer",
@@ -227,7 +121,9 @@ int RunExample()
         EndDrawing();
     }
 
-    manager->StopAllEffects();
+    Rayseer::StopEffect(handle);
+    Rayseer::UnloadEffect(effect);
+    Rayseer::Shutdown();
     return 0;
 }
 } // namespace
