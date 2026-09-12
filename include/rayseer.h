@@ -867,6 +867,23 @@ public:
         return true;
     }
 
+    bool SendEffectTrigger(
+        EffectHandle handle,
+        int index)
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        m_manager->SendTrigger(
+            static_cast<Effekseer::Handle>(handle.value),
+            static_cast<int32_t>(index)
+        );
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
