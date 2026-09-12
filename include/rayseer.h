@@ -567,7 +567,7 @@ public:
     }
 
     //エフェクト再生
-    EffectHandle PlayEffect(const EffectAsset& asset, Vector3 position = Vector3{0.0f, 0.0f, 0.0f})
+    EffectHandle PlayEffect(const EffectAsset& asset, Vector3 position = Vector3{ 0.0f, 0.0f, 0.0f })
     {
         if (!Detail::IsFinite(position))
         {
@@ -616,7 +616,7 @@ public:
     bool IsEffectPlaying(EffectHandle handle) const
     {
         return Owns(handle) &&
-               m_manager->Exists(static_cast<Effekseer::Handle>(handle.value));
+            m_manager->Exists(static_cast<Effekseer::Handle>(handle.value));
     }
 
     bool SetEffectPosition(EffectHandle handle, Vector3 position)
@@ -654,7 +654,7 @@ public:
         m_manager->SetScale(handle.value, scale.x, scale.y, scale.z);
         return true;
     }
-    
+
     //エフェクトの再生速度を設定する
     bool SetEffectSpeed(EffectHandle handle, float speed)
     {
@@ -747,8 +747,8 @@ public:
         m_renderer->SetCameraMatrix(view);
         m_renderer->SetProjectionMatrix(projection);
         m_renderer->SetCameraParameter(
-            Effekseer::Vector3D{0.0f, 0.0f, 1.0f},
-            Effekseer::Vector3D{0.0f, 0.0f, 0.0f});
+            Effekseer::Vector3D{ 0.0f, 0.0f, 1.0f },
+            Effekseer::Vector3D{ 0.0f, 0.0f, 0.0f });
         return true;
     }
 
@@ -797,9 +797,9 @@ public:
         {
             return false;
         }
-        
+
         m_manager->SetShown(
-            static_cast<Effekseer::Handle>(handle.value), 
+            static_cast<Effekseer::Handle>(handle.value),
             visible);
 
 
@@ -816,7 +816,7 @@ public:
         }
 
         m_manager->SetPaused(
-            static_cast<Effekseer::Handle>(handle.value), 
+            static_cast<Effekseer::Handle>(handle.value),
             paused);
 
         return true;
@@ -839,7 +839,30 @@ public:
                 color.b, //NOTE : uint8_t. 0-255 number value
                 color.a  //NOTE : uint8_t. 0-255 number value
             }
-            );
+        );
+
+        return true;
+    }
+    bool SetEffectDynamicInput(
+        EffectHandle handle,
+        int index,
+        float value)
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        //index 0~3はSetDynamicInputの範囲内のことを指す
+        if (index < 0 || index > 3 || !Detail::IsFinite(value))
+        {
+            return false;
+        }
+
+        m_manager->SetDynamicInput(
+            static_cast<Effekseer::Handle>(handle.value), 
+            index, 
+            value);
 
         return true;
     }
@@ -1192,7 +1215,7 @@ bool SetEffectDynamicInput(
     int index,
     float value)
 {
-    return false;
+    return g_context.SetEffectDynamicInput(handle,index,value);
 }
 
 bool SendEffectTrigger(
