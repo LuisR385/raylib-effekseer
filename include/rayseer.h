@@ -769,6 +769,26 @@ public:
         return true;
     }
 
+    bool SetEffectTarget(
+        EffectHandle handle,
+        Vector3 target)
+    {
+        //有効値/またはエフェクトが再生中でないか
+        if (!IsEffectPlaying(handle) || !Detail::IsFinite(target))
+        {
+            return false;
+        }
+
+        //effekseer側のSetTargetLocationを使用してtargetを直接代入
+        m_manager->SetTargetLocation(
+            static_cast<Effekseer::Handle>(handle.value),
+            target.x,
+            target.y,
+            target.z);
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1037,11 +1057,11 @@ EffectHandle PlayEffect(
         return {};
     }
 
-    if (!SetEffectTransform(handle, transform))
-    {
-        StopEffect(handle);
-        return {};
-    }
+    //if (!Rayseer::SetEffectTransform(handle, transform))
+    //{
+    //    StopEffect(handle);
+    //    return {};
+    //}
 
     return handle;
 }
@@ -1085,11 +1105,9 @@ bool SetEffectMatrix(
 bool SetEffectTarget(
     EffectHandle handle,
     Vector3 target)
-{
+{}
 
-}
-
-/* dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
+//dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
 
 bool SetEffectColor(
     EffectHandle handle,
@@ -1126,7 +1144,6 @@ bool SendEffectTrigger(
 {
 
 }
- */
 
 } // namespace Rayseer
 
