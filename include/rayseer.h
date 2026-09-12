@@ -789,6 +789,23 @@ public:
         return true;
     }
 
+    bool SetEffectVisible(
+        EffectHandle handle,
+        bool visible)
+    {
+        if (IsEffectPlaying(handle))
+        {
+            return false;
+        }
+        
+        m_manager->SetShown(
+            static_cast<Effekseer::Handle>(handle.value), 
+            visible);
+
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1129,7 +1146,10 @@ bool SetEffectVisible(
     EffectHandle handle,
     bool visible)
 {
-    return false;
+
+
+
+    return true;
 }
 
 bool SetEffectDynamicInput(
