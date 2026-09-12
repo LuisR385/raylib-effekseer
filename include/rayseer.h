@@ -878,7 +878,7 @@ public:
 
         m_manager->SendTrigger(
             static_cast<Effekseer::Handle>(handle.value),
-            static_cast<int32_t>(index)
+            index
         );
 
         return true;
