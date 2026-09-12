@@ -955,13 +955,48 @@ EffectHandle PlayEffect(
     const EffectAsset& asset,
     const EffectTransform& transform = {})
 {
+    EffectHandle handle = g_context.PlayEffect(asset, transform.position);
 
+    if (!handle)
+    {
+        return {};
+    }
+
+    if (!SetEffectTransform(handle, transform))
+    {
+        StopEffect(handle);
+        return {};
+    }
+
+    return handle;
 }
 
 bool SetEffectTransform(
     EffectHandle handle,
     const EffectTransform& transform)
 {
+
+    //TODO : 全体的なTransform型にする
+
+
+    if (!SetEffectPosition(handle, transform.position))
+    {
+        return false;
+    }
+
+    if (!SetEffectRotation(handle, transform.rotation))
+    {
+        return false;
+    }
+
+    if (!SetEffectScale(handle, transform.scale))
+    {
+        return false;
+    }
+
+    return true;
+
+
 
 }
 
