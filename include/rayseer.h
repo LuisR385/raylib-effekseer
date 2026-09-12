@@ -806,6 +806,22 @@ public:
         return true;
     }
 
+    bool SetEffectPaused(
+        EffectHandle handle,
+        bool paused)
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        m_manager->SetPaused(
+            static_cast<Effekseer::Handle>(handle.value), 
+            paused);
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1139,7 +1155,7 @@ bool SetEffectPaused(
     EffectHandle handle,
     bool paused)
 {
-    return false;
+    return g_context.SetEffectPaused(handle,paused);
 }
 
 bool SetEffectVisible(
