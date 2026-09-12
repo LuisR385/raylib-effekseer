@@ -822,6 +822,28 @@ public:
         return true;
     }
 
+    bool SetEffectColor(
+        EffectHandle handle,
+        Color color)
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        m_manager->SetAllColor(
+            static_cast<Effekseer::Handle>(handle.value),
+            Effekseer::Color{
+                color.r, //NOTE : uint8_t. 0-255 number value
+                color.g, //NOTE : uint8_t. 0-255 number value
+                color.b, //NOTE : uint8_t. 0-255 number value
+                color.a  //NOTE : uint8_t. 0-255 number value
+            }
+            );
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1148,7 +1170,7 @@ bool SetEffectColor(
     EffectHandle handle,
     Color color)
 {
-    return false;
+    return g_context.SetEffectColor(handle, color);
 }
 
 bool SetEffectPaused(
