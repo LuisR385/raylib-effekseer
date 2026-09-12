@@ -1146,10 +1146,7 @@ bool SetEffectVisible(
     EffectHandle handle,
     bool visible)
 {
-
-
-
-    return true;
+    return g_context.SetEffectVisible(handle, visible);
 }
 
 bool SetEffectDynamicInput(
