@@ -1106,7 +1106,7 @@ bool SetEffectTarget(
     EffectHandle handle,
     Vector3 target)
 {
-    return false;
+    return g_context.SetEffectTarget(handle,target);
 }
 
 //dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
