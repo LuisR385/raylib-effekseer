@@ -1079,7 +1079,7 @@ bool SetEffectMatrix(
     EffectHandle handle,
     const Matrix& matrix)
 {
-
+    g_context.SetEffectMatrix(handle, matrix);
 }
 
 bool SetEffectTarget(
