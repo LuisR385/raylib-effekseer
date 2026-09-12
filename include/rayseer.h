@@ -135,6 +135,63 @@ inline Effekseer::Matrix44 ToEffekseerMatrix(const Matrix& matrix)
     return result;
 }
 
+inline Effekseer::Matrix43 ToEffekseerMatrix43(const Matrix& matrix)
+{
+    Effekseer::Matrix43 result = { 0 };
+
+    //      raylib
+    // 
+    //  | m0  m4  m8   m12 |
+    //  | m1  m5  m9   m13 |
+    //  | m2  m6  m10  m14 |
+    //  | 0   0   0    1   |
+    //
+    // 
+    //      effekseer
+    //  | m0   m1   m2  |
+    //  | m4   m5   m6  |
+    //  | m8   m9   m10 |
+    //  | m12  m13  m14 |
+
+
+    //
+    //
+    //
+    //                    raylib            Effekseer Matrix43
+
+    //座標系              右手系             右手系
+    //回転                OpenGL系           反時計回り
+    //サイズ              4x4               4x3
+    //ベクトル規約        列ベクトル的        行ベクトル
+    //                    M * V             V * M
+    //
+    //Translation         最後の列           最後の行
+    //                m12,m13,m14       Value[3][0..2](raylibでいうm12,m13,m14)
+ 
+ 
+ 
+
+
+    result.Value[0][0] = matrix.m0;
+    result.Value[0][1] = matrix.m1;
+    result.Value[0][2] = matrix.m2;
+    
+    result.Value[1][0] = matrix.m4;
+    result.Value[1][1] = matrix.m5;
+    result.Value[1][2] = matrix.m6;
+
+    result.Value[2][0] = matrix.m8;
+    result.Value[2][1] = matrix.m9;
+    result.Value[2][2] = matrix.m10;
+
+    result.Value[3][0] = matrix.m12;
+    result.Value[3][1] = matrix.m13;
+    result.Value[3][2] = matrix.m14;
+    
+    return result;
+
+}
+
 inline Effekseer::Matrix44 MakeScreenProjection(float width, float height)
 {
     constexpr float nearPlane = -1000.0f;
