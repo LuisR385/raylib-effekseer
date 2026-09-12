@@ -1099,13 +1099,15 @@ bool SetEffectMatrix(
     EffectHandle handle,
     const Matrix& matrix)
 {
-    g_context.SetEffectMatrix(handle, matrix);
+    return g_context.SetEffectMatrix(handle, matrix);
 }
 
 bool SetEffectTarget(
     EffectHandle handle,
     Vector3 target)
-{}
+{
+    return false;
+}
 
 //dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
 
@@ -1113,21 +1115,21 @@ bool SetEffectColor(
     EffectHandle handle,
     Color color)
 {
-
+    return false;
 }
 
 bool SetEffectPaused(
     EffectHandle handle,
     bool paused)
 {
-
+    return false;
 }
 
 bool SetEffectVisible(
     EffectHandle handle,
     bool visible)
 {
-
+    return false;
 }
 
 bool SetEffectDynamicInput(
@@ -1135,14 +1137,14 @@ bool SetEffectDynamicInput(
     int index,
     float value)
 {
-
+    return false;
 }
 
 bool SendEffectTrigger(
     EffectHandle handle,
     int index)
 {
-
+    return false;
 }
 
 } // namespace Rayseer
