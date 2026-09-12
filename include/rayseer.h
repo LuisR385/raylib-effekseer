@@ -447,6 +447,7 @@ public:
             return false;
         }
 
+        //state状態を復元する設定をONにする(raylibのAPIとの齟齬を無くすため)
         renderer->SetRestorationOfStatesFlag(true);
 
         manager->SetSpriteRenderer(renderer->CreateSpriteRenderer());
