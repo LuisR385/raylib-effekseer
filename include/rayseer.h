@@ -1239,7 +1239,7 @@ bool SendEffectTrigger(
     EffectHandle handle,
     int index)
 {
-    return false;
+    return g_context.SendEffectTrigger(handle, index);
 }
 
 } // namespace Rayseer
