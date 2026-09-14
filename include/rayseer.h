@@ -793,7 +793,7 @@ public:
         EffectHandle handle,
         bool visible)
     {
-        if (IsEffectPlaying(handle))
+        if (!IsEffectPlaying(handle))
         {
             return false;
         }
