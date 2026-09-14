@@ -884,6 +884,28 @@ public:
         return true;
     }
 
+
+    bool GetEffectPosition(EffectHandle handle, Vector3& outPosition) const
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        //エフェクトインスタンスの位置を取得する
+        const Effekseer::Vector3D position =
+            m_manager->GetLocation(
+                static_cast<Effekseer::Handle>(handle.value));
+
+        outPosition = Vector3{
+            position.X,
+            position.Y,
+            position.Z
+        };
+
+        return true;
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1244,6 +1266,13 @@ bool SendEffectTrigger(
     int index)
 {
     return g_context.SendEffectTrigger(handle, index);
+}
+
+inline bool GetEffectPosition(
+    EffectHandle handle,
+    Vector3& outPosition)
+{
+    return g_context.GetEffectPosition(handle, outPosition);
 }
 
 } // namespace Rayseer
