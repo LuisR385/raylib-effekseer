@@ -906,6 +906,25 @@ public:
         return true;
     }
 
+    bool IsPaused(EffectHandle handle)const
+    {
+        if (!IsEffectPlaying(handle))
+        {
+            return false;
+        }
+
+        const bool ispausedEffect = m_manager->GetPaused(static_cast<Effekseer::Handle>(handle.value));
+
+        if (ispausedEffect)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
     // remains in the same depth buffer, while the two renderers keep a clear state boundary.
     //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
@@ -1273,6 +1292,11 @@ inline bool GetEffectPosition(
     Vector3& outPosition)
 {
     return g_context.GetEffectPosition(handle, outPosition);
+}
+
+inline bool IsPaused(EffectHandle handle)
+{
+    return g_context.IsPaused(handle);
 }
 
 } // namespace Rayseer
