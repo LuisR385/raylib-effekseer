@@ -1141,27 +1141,7 @@ inline void Resize() noexcept
 {
 }
 
-EffectHandle PlayEffect(
-    const EffectAsset& asset,
-    const EffectTransform& transform = {})
-{
-    EffectHandle handle = g_context.PlayEffect(asset, transform.position);
-
-    if (!handle)
-    {
-        return {};
-    }
-
-    //if (!Rayseer::SetEffectTransform(handle, transform))
-    //{
-    //    StopEffect(handle);
-    //    return {};
-    //}
-
-    return handle;
-}
-
-bool SetEffectTransform(
+inline bool SetEffectTransform(
     EffectHandle handle,
     const EffectTransform& transform)
 {
@@ -1189,6 +1169,30 @@ bool SetEffectTransform(
 
 
 }
+
+
+
+inline EffectHandle PlayEffect(
+    const EffectAsset& asset,
+    const EffectTransform& transform = {})
+{
+    EffectHandle handle = g_context.PlayEffect(asset, transform.position);
+
+    if (!handle)
+    {
+        return {};
+    }
+
+    if (!Rayseer::SetEffectTransform(handle, transform))
+    {
+        StopEffect(handle);
+        return {};
+    }
+
+    return handle;
+}
+
+
 
 bool SetEffectMatrix(
     EffectHandle handle,
