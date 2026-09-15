@@ -898,6 +898,21 @@ namespace Rayseer
             return true;
         }
 
+        Vector3 GetEffectPosition(EffectHandle handle)const
+        {
+            if (!IsEffectPlaying(handle))
+            {
+                return Vector3{ 0.0f,0.0f,0.0f }; //explicit position 0.f if when IsEffect doesnt playing.
+            }
+
+            const Effekseer::Vector3D position =
+                m_manager->GetLocation(
+                    static_cast<Effekseer::Handle>(handle.value));
+
+
+            return Vector3{ position.X,position.Y,position.Z };
+        }
+
         bool IsPaused(EffectHandle handle)const
         {
             if (!IsEffectPlaying(handle))
