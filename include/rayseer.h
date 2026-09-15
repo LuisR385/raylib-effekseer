@@ -1005,6 +1005,18 @@ namespace Rayseer
 
         }
 
+        int GetEffectInstanceCount(EffectHandle handle)const
+        {
+            if (!IsEffectPlaying(handle))
+            {
+                return 0;
+            }
+
+            return m_manager->GetInstanceCount(
+                static_cast<Effekseer::Handle>(handle.value)
+            );
+        }
+
         // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
         // remains in the same depth buffer, while the two renderers keep a clear state boundary.
         //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
