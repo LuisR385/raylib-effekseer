@@ -932,6 +932,27 @@ namespace Rayseer
             }
         }
 
+        bool GetEffectSpeed(EffectHandle handle, float& outSpeed)const
+        {
+            if (!IsEffectPlaying(handle))
+            {
+                return false;
+            }
+           
+            outSpeed = 
+                m_manager->GetSpeed(
+                static_cast<Effekseer::Handle>(handle.value)
+                );
+
+            if (outSpeed < 1e-6f) //EPSILON。いるかわからんがいらんかったら消す
+            {
+                outSpeed = 1e-6f;
+                return false;
+            }
+
+            return true;
+        }
+
         // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
         // remains in the same depth buffer, while the two renderers keep a clear state boundary.
         //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
