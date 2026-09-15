@@ -503,10 +503,6 @@ namespace Rayseer
             }
         }
 
-        explicit operator bool() const noexcept
-        {
-            return IsReady();
-        }
 
         EffectAsset LoadEffect(const char* utf8Path)
         {
@@ -963,6 +959,12 @@ namespace Rayseer
         Effekseer::ManagerRef GetNativeManagerRef() const noexcept
         {
             return m_manager;
+        }
+
+        //フラグヘルパー。初期化などされているかどうかをチェック
+        explicit operator bool() const noexcept
+        {
+            return IsReady();
         }
 
     private:
