@@ -976,6 +976,35 @@ namespace Rayseer
             
         }
 
+        bool GetEffectDynamicInput(EffectHandle handle, int index, float& outSpeed)const
+        {
+            if (!IsEffectPlaying(handle))
+            {
+                return false;
+            }
+
+            outSpeed = m_manager->GetDynamicInput(
+                static_cast<Effekseer::Handle>(handle.value), 
+                index);
+
+            return true;
+        }
+
+        float GetEffectDynamicInput(EffectHandle handle, int index)const
+        {
+            if (!IsEffectPlaying(handle))
+            {
+                return 0.0f;
+            }
+
+            const float outSpeed = m_manager->GetDynamicInput(
+                static_cast<Effekseer::Handle>(handle.value),
+                index);
+
+            return outSpeed;
+
+        }
+
         // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
         // remains in the same depth buffer, while the two renderers keep a clear state boundary.
         //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
