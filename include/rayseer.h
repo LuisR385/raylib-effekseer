@@ -1017,6 +1017,11 @@ namespace Rayseer
             );
         }
 
+        int GetEffectInstanceTotalCount()const
+        {
+            return m_manager->GetTotalInstanceCount();
+        }
+
         // Call outside BeginMode3D()/EndMode3D(). Raylib geometry drawn before this
         // remains in the same depth buffer, while the two renderers keep a clear state boundary.
         //BeginMode3D() / EndMode3D()が終わった後に呼んでください。
