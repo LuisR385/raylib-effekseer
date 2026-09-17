@@ -1,5 +1,13 @@
 # raylib-effekseer
 
+## Example
+
+![Example GIF](docs/raylib-effekseer-demo.gif)
+
+## Example Code
+
+> [!IMPORTANT] Rayseer::Draw() should be called outside BeginMode3D() / EndMode3D().
+
 ```cpp
 #include "rayseer.h"
 
