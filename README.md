@@ -6,7 +6,8 @@
 
 ## Example Code
 
-> [!IMPORTANT] Rayseer::Draw() should be called outside BeginMode3D() / EndMode3D().
+> [!IMPORTANT]
+> Rayseer::Draw() should be called outside BeginMode3D() / EndMode3D().
 
 ```cpp
 #include "rayseer.h"
