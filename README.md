@@ -22,7 +22,7 @@
 ```cpp
 #include "rayseer.h"
 
-#include "raylib.h" //もし必要なら 
+#include "raylib.h" //If include needed 
 
 int main()
 {
