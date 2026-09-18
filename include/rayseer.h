@@ -24,6 +24,21 @@
 #include <raylib.h>
 #include <rlgl.h>
 
+//TODO : TEST CHECK IF INCLUDE RAYMATH.H
+// raymath.h が存在してインクルード可能かチェックする
+// if has include check raymath.h. 
+#if has_include(<raymath.h>)
+#define RAYSEER_HAS_RAYMATH 1
+#else
+#define RAYSEER_HAS_RAYMATH 0
+#endif
+
+// 必要に応じてインクルードする
+// if user has raymath.h use to raymath header.
+#if RAYSEER_HAS_RAYMATH
+#include <raymath.h>
+#endif
+
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
