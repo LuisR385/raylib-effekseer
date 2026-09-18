@@ -5,8 +5,8 @@
 >
 > Requirements:
 > - C++17 or later
-> - [raylib v6.0 over](https://github.com/raysan5/raylib)
-> - [Effekseer v1.80.7 over](https://effekseer.github.io/en/index.html)
+> - [raylib v6.0 or later](https://github.com/raysan5/raylib)
+> - [Effekseer v1.80.6 or later](https://effekseer.github.io/en/index.html)
 > - [EffekseerRendererGL](https://effekseer.github.io/en/download.html)
 
 
