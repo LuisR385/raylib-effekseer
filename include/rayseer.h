@@ -430,6 +430,8 @@ namespace Rayseer
         RaySeerContext(RaySeerContext&&) = delete;
         RaySeerContext& operator=(RaySeerContext&&) = delete;
 
+        //RaySeerContextの初期化
+        //NOTE : 只今はOPENGL 3のみ対応
         bool Initialize(int maxParticleCount = 8000)
         {
             if (IsReady())
@@ -479,6 +481,9 @@ namespace Rayseer
             return true;
         }
 
+        //終了処理
+        // 必ずCloseWindow() APIより手前に呼ばないといけません
+        //Shutdown. this api need call before CloseWindow() of raylib api.
         void Shutdown()
         {
             if (m_manager != nullptr)
@@ -553,6 +558,8 @@ namespace Rayseer
             }
         }
 
+        //Release EffectAsset from memory.
+        //VRAMからEffectAssetのエフェクトハンドルを解放処理する
         bool UnloadEffect(EffectAsset& asset)
         {
             EffectSlot* slot = FindEffectSlot(asset);
@@ -612,6 +619,8 @@ namespace Rayseer
             return true;
         }
 
+        //全ての再生されているエフェクトを停止する
+        //Stop All Effect.
         void StopAllEffects()
         {
             if (m_manager != nullptr)
@@ -620,12 +629,16 @@ namespace Rayseer
             }
         }
 
+        //エフェクトが再生されているか？を確認する
+        //Check EffectHandle playing? methods.
         bool IsEffectPlaying(EffectHandle handle) const
         {
             return Owns(handle) &&
                 m_manager->Exists(static_cast<Effekseer::Handle>(handle.value));
         }
 
+        //エフェクトの位置を指定する(エフェクトハンドル初期化などに利用)
+        //Set to EffectHandle position.(for example, use to initialize position.) 
         bool SetEffectPosition(EffectHandle handle, Vector3 position)
         {
             if (!IsEffectPlaying(handle) || !Detail::IsFinite(position))
@@ -636,6 +649,7 @@ namespace Rayseer
             return true;
         }
 
+        //エフェクトの回転を設定
         // raylib's public rotation angles are generally expressed in degrees.
         // Effekseer uses radians, so the conversion stays inside Rayseer.
         bool SetEffectRotation(EffectHandle handle, Vector3 rotationDegrees)
@@ -652,6 +666,8 @@ namespace Rayseer
             return true;
         }
 
+        //エフェクトの拡大/縮小の設定
+        //Set Effect Scale (size).
         bool SetEffectScale(EffectHandle handle, Vector3 scale)
         {
             if (!IsEffectPlaying(handle) || !Detail::IsFinite(scale))
@@ -663,6 +679,7 @@ namespace Rayseer
         }
 
         //エフェクトの再生速度を設定する
+        //Set Effect Speed.
         bool SetEffectSpeed(EffectHandle handle, float speed)
         {
             if (!IsEffectPlaying(handle) || !Detail::IsFinite(speed))
@@ -674,6 +691,8 @@ namespace Rayseer
         }
 
         //更新処理
+        //Update rayseer.
+        //NOTE : effekseer is 60.0 FPS.
         void Update(float deltaTimeSeconds)
         {
             if (!IsReady() || !Detail::IsFinite(deltaTimeSeconds) || deltaTimeSeconds < 0.0f)
@@ -685,6 +704,7 @@ namespace Rayseer
         }
 
         //カメラをセットする(低レベルAPI)
+        //Set Camera on Effekseer. (Native API)
         bool SetEffekseerCamera(const Camera3D& camera)
         {
             if (!IsReady() || !Detail::IsUsableCamera(camera))
@@ -730,6 +750,7 @@ namespace Rayseer
         }
 
         // priminalyy low-level Camera2D mapping .
+        // TODO : 2D用のものを追加する予定
         bool SetEffekseerCamera(const Camera2D& camera)
         {
             if (!IsReady() || !Detail::IsFinite(camera.offset.x) || !Detail::IsFinite(camera.offset.y) ||
@@ -759,6 +780,8 @@ namespace Rayseer
             return true;
         }
 
+        //行列をエフェクトに設定する(低レベルAPI)
+        //Set Effect to Matrix (native api).
         bool SetEffectMatrix(
             EffectHandle handle,
             const Matrix& matrix)
@@ -776,6 +799,8 @@ namespace Rayseer
             return true;
         }
 
+        //エフェクトを指定されたターゲットの位置に設定する
+        //Set Effect into Target (NOTE : position).
         bool SetEffectTarget(
             EffectHandle handle,
             Vector3 target)
@@ -796,6 +821,8 @@ namespace Rayseer
             return true;
         }
 
+        //エフェクトの見える、見えないのフラグ管理で行うメソッド
+        //Set Effect Visible on flag.
         bool SetEffectVisible(
             EffectHandle handle,
             bool visible)
@@ -813,6 +840,8 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトを停止、再開するメソッド
+        //Set Effect Paused / ReStart.
         bool SetEffectPaused(
             EffectHandle handle,
             bool paused)
@@ -829,6 +858,8 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトの色合いを変化させる
+        //Set Effect Color Change.
         bool SetEffectColor(
             EffectHandle handle,
             Color color)
@@ -850,6 +881,9 @@ namespace Rayseer
 
             return true;
         }
+        //動的入力による指定されたエフェクトを設定する
+        //Set Effect to Dynamic Input
+        //NOTE : index value -> clamp 0 between 3.
         bool SetEffectDynamicInput(
             EffectHandle handle,
             int index,
@@ -874,6 +908,8 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトをトリガーによって送信する
+        //Send Effect Trigger to index.
         bool SendEffectTrigger(
             EffectHandle handle,
             int index)
@@ -892,6 +928,9 @@ namespace Rayseer
         }
 
 
+        //指定されたエフェクトの座標位置を獲得する
+        //Getter EffectHandle position.
+        //NOTE : bool type Getter / assignment syntax 2 value gonna outer get position.
         bool GetEffectPosition(EffectHandle handle, Vector3& outPosition) const
         {
             if (!IsEffectPlaying(handle))
@@ -913,6 +952,9 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトの座標の位置を獲得する
+        //Getter Effect Position.
+        //NOTE : Vector3 type Getter.
         Vector3 GetEffectPosition(EffectHandle handle)const
         {
             if (!IsEffectPlaying(handle))
@@ -928,6 +970,9 @@ namespace Rayseer
             return Vector3{ position.X,position.Y,position.Z };
         }
 
+        //指定されたエフェクトが停止しているかのチェック
+        //Check Effect is paused.
+        
         bool IsPaused(EffectHandle handle)const
         {
             if (!IsEffectPlaying(handle))
@@ -947,6 +992,9 @@ namespace Rayseer
             }
         }
 
+        //指定されたエフェクトのスピード(再生速度)獲得する
+        //Getter Effect Speed (playback speed).
+        //NOTE : type of bool. if use, need outerSpeed variables
         bool GetEffectSpeed(EffectHandle handle, float& outSpeed)const
         {
             if (!IsEffectPlaying(handle))
@@ -968,6 +1016,9 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトのスピード(再生速度)獲得する
+        //Getter Effect Speed (playback speed).
+        //NOTE : type of float
         float GetEffectSpeed(EffectHandle handle)const
         {
             if (!IsEffectPlaying(handle))
@@ -991,6 +1042,9 @@ namespace Rayseer
             
         }
 
+        //指定されたエフェクトの動的入力の取得をする
+        //Getter of Effect Dynamic Input.
+        //NOTE : type of bool.
         bool GetEffectDynamicInput(EffectHandle handle, int index, float& outSpeed)const
         {
             if (!IsEffectPlaying(handle))
@@ -1005,6 +1059,9 @@ namespace Rayseer
             return true;
         }
 
+        //指定されたエフェクトの動的入力の取得をする
+        //Getter of Effect Dynamic Input.
+        //NOTE : type of float.
         float GetEffectDynamicInput(EffectHandle handle, int index)const
         {
             if (!IsEffectPlaying(handle))
@@ -1020,6 +1077,8 @@ namespace Rayseer
 
         }
 
+        //インスタンスの個数を獲得する
+        //Get Effect Instance Count now.
         int GetEffectInstanceCount(EffectHandle handle)const
         {
             if (!IsEffectPlaying(handle))
@@ -1032,6 +1091,9 @@ namespace Rayseer
             );
         }
 
+        //全体の個数を獲得する(int型)
+        //Get Effect Instance Total Count.
+        //NOTE : type of Integer.
         int GetEffectInstanceTotalCount()const
         {
             return m_manager->GetTotalInstanceCount();
@@ -1071,17 +1133,23 @@ namespace Rayseer
             return m_renderer->EndRendering();
         }
 
+        //Effekseer側のRenderer ref.
+        //effekseer renderer reference. (NATIVE API)
         EffekseerRendererGL::RendererRef GetNativeRendererRef() const noexcept
         {
             return m_renderer;
         }
 
+        //Effekseer側のManager ref.(全体管理)
+        //effekseer Manager reference. (NATIVE API)
         Effekseer::ManagerRef GetNativeManagerRef() const noexcept
         {
             return m_manager;
         }
 
         //フラグヘルパー。初期化などされているかどうかをチェック
+        //RayseerContext helper bool check.
+        //NOTE : operator bool is Initialized?
         explicit operator bool() const noexcept
         {
             return IsReady();
@@ -1204,61 +1272,81 @@ namespace Rayseer
         return Initialize(maxParticleCount);
     }
 
+    //Shutdown RaySeer Context.
     inline void ShutdownRaySeer()
     {
         Shutdown();
     }
 
+    //エフェクトを読み込む
+    //Load to EffectAsset
     inline EffectAsset LoadEffect(const char* utf8Path)
     {
         return g_context.LoadEffect(utf8Path);
     }
 
+    //エフェクトを読み込む
+    //NOTE : Syntax variable type of filesystem.
     inline EffectAsset LoadEffect(const std::filesystem::path& path)
     {
         return g_context.LoadEffect(path);
     }
 
+    //エフェクトの解放処理をする
+    //release effect.
     inline bool UnloadEffect(EffectAsset& asset)
     {
         return g_context.UnloadEffect(asset);
     }
 
+    //エフェクトが読み込まれたかチェックする(bool型)
+    //Check is effect loaded?
     inline bool IsEffectLoaded(const EffectAsset& asset)
     {
         return g_context.IsEffectLoaded(asset);
     }
 
+    //エフェクトを再生する
+    //Play Effect
     inline EffectHandle PlayEffect(const EffectAsset& asset, Vector3 position = Vector3{0.0f, 0.0f, 0.0f})
     {
         return g_context.PlayEffect(asset, position);
     }
 
+    //エフェクトをプレイバックを止める
+    //Stop Effect
     inline bool StopEffect(EffectHandle handle)
     {
         return g_context.StopEffect(handle);
     }
 
+    //存在しているエフェクトを全て止める
+    //aliving effect all stop.
     inline void StopAllEffects()
     {
         g_context.StopAllEffects();
     }
 
+    //エフェクトが再生中か？
+    //Check is effect playing?
     inline bool IsEffectPlaying(EffectHandle handle)
     {
         return g_context.IsEffectPlaying(handle);
     }
 
+    //エフェクトの位置を設定する
     inline bool SetEffectPosition(EffectHandle handle, Vector3 position)
     {
         return g_context.SetEffectPosition(handle, position);
     }
 
+    //エフェクトの回転を設定する
     inline bool SetEffectRotation(EffectHandle handle, Vector3 rotationDegrees)
     {
         return g_context.SetEffectRotation(handle, rotationDegrees);
     }
 
+    //エフェクトの拡大/縮小を設定する
     inline bool SetEffectScale(EffectHandle handle, Vector3 scale)
     {
         return g_context.SetEffectScale(handle, scale);
@@ -1269,26 +1357,40 @@ namespace Rayseer
         return g_context.SetEffectSpeed(handle, speed);
     }
 
+    //raylibのためのeffekseerを更新する(エフェクトもこれにより再生される)
+    //Update effekseer (call to Rayseer Update).
     inline void Update(float deltaTimeSeconds)
     {
         g_context.Update(deltaTimeSeconds);
     }
 
+    //エフェクトなどをraylibの画面に描画する
+    //Draw to screen.
     inline bool Draw(const Camera3D& camera)
     {
         return g_context.Draw(camera);
     }
 
+    //3Dカメラを設定する(エフェクトはカメラが必要)
+    //set camera3D. 
+    //NOTE : Effect need camera.
     inline bool SetRayseerCamera3D(const Camera3D& camera)
     {
         return g_context.SetEffekseerCamera(camera);
     }
 
+    //オーバーロードAPI ( NOTE : overload api).
+    //3Dカメラを設定する(エフェクトはカメラが必要)
+    //set camera3D. 
+    //NOTE : Effect need camera.
     inline bool SetRayseerCamera3D(const Camera3D& camera, RaySeerContext& context)
     {
         return context.SetEffekseerCamera(camera);
     }
 
+    //2Dカメラを設定する(エフェクトはカメラが必要)
+    //set camera3D. 
+    //NOTE : Effect need camera.
     inline bool SetRayseerCamera2D(const Camera2D& camera)
     {
         return g_context.SetEffekseerCamera(camera);
@@ -1300,6 +1402,8 @@ namespace Rayseer
     {
     }
 
+    //Transform型に応じた位置/大きさ/回転などを設定する
+    //Set Effect Transform.( position, scale, rotation )
     inline bool SetEffectTransform(
         EffectHandle handle,
         const EffectTransform& transform)
@@ -1329,6 +1433,8 @@ namespace Rayseer
 
     }
 
+    //エフェクトの再生をする(Transform型)
+    //Play to Effect (type of EffectTransform).
     inline EffectHandle PlayEffect(
         const EffectAsset& asset,
         const EffectTransform& transform = {})
@@ -1350,7 +1456,8 @@ namespace Rayseer
     }
 
 
-
+    //行列によるエフェクトの設定
+    //Set Effect to Matrix.
     inline bool SetEffectMatrix(
         EffectHandle handle,
         const Matrix& matrix)
@@ -1358,6 +1465,8 @@ namespace Rayseer
         return g_context.SetEffectMatrix(handle, matrix);
     }
 
+    //指定されたVector3によるエフェクトのターゲット位置の設定
+    //Set Effect Target( Syntax 2 ).
     inline bool SetEffectTarget(
         EffectHandle handle,
         Vector3 target)
@@ -1367,6 +1476,8 @@ namespace Rayseer
 
     //dxlibのAPIをエフェクト自体の色合いを変化させることもできるようにしたいり、便利なAPIを参考にしてみる
 
+    //エフェクト自体の色合いを変更を設定する
+    //Set Effect Color (change color).
     inline bool SetEffectColor(
         EffectHandle handle,
         Color color)
@@ -1374,6 +1485,8 @@ namespace Rayseer
         return g_context.SetEffectColor(handle, color);
     }
 
+    //エフェクトを停止/再開させる
+    //set effect stop/playback start.
     inline bool SetEffectPaused(
         EffectHandle handle,
         bool paused)
@@ -1381,6 +1494,8 @@ namespace Rayseer
         return g_context.SetEffectPaused(handle,paused);
     }
 
+    //エフェクトの見える、見えないのフラグ管理を設定する
+    //Set Effect is visible ( NOTE : need use syntax 2).
     inline bool SetEffectVisible(
         EffectHandle handle,
         bool visible)
@@ -1388,6 +1503,8 @@ namespace Rayseer
         return g_context.SetEffectVisible(handle, visible);
     }
 
+    //エフェクトの動的入力を設定する
+    //set effect dynamic input.
     inline bool SetEffectDynamicInput(
         EffectHandle handle,
         int index,
@@ -1396,6 +1513,8 @@ namespace Rayseer
         return g_context.SetEffectDynamicInput(handle,index,value);
     }
 
+    //エフェクトにトリガーによる送信をする
+    //Send Effect Trigger( need use syntax 2 of index integer).
     inline bool SendEffectTrigger(
         EffectHandle handle,
         int index)
@@ -1403,6 +1522,8 @@ namespace Rayseer
         return g_context.SendEffectTrigger(handle, index);
     }
 
+    //指定されたエフェクトの座標を獲得する
+    //Get to Effect Position.
     inline bool GetEffectPosition(
         EffectHandle handle,
         Vector3& outPosition)
@@ -1410,6 +1531,8 @@ namespace Rayseer
         return g_context.GetEffectPosition(handle, outPosition);
     }
 
+    //エフェクトが停止しているか、していないかを確認する。
+    //Check Effect is paused?
     inline bool IsPaused(EffectHandle handle)
     {
         return g_context.IsPaused(handle);
