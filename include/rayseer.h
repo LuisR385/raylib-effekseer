@@ -379,7 +379,7 @@ namespace Rayseer
         using RSEffectAsset = RaySeerEffectAsset;
 
         RaySeerEffectAsset() = default;
-
+        ~RaySeerEffectAsset() = default;
         // This checks whether the value contains an asset token. Use
         // IsEffectLoaded() when the asset may already have been unloaded.
         bool IsValid() const noexcept
