@@ -1,5 +1,15 @@
 # raylib-effekseer
 
+> [!IMPORTANT]
+> raylib-effekseer is a bridge library for using **Effekseer with raylib**.
+>
+> Requirements:
+> - C++17 or later
+> - [raylib v6.0 over](https://github.com/raysan5/raylib)
+> - [Effekseer v1.80.7 over](https://effekseer.github.io/en/index.html)
+> - [EffekseerRendererGL](https://effekseer.github.io/en/download.html)
+
+
 ## Example
 
 ![Example GIF](docs/raylib-effekseer-demo.gif)
