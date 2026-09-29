@@ -369,7 +369,6 @@ namespace Rayseer
 
     struct EffectHandle
     {
-        std::int32_t value = -1;
 
         bool IsValid() const noexcept
         {
@@ -382,6 +381,7 @@ namespace Rayseer
         }
 
     private:
+        std::int32_t value = -1;
         const RaySeerContext* owner_ = nullptr;
         std::uint32_t sessionGeneration_ = 0;
 
