@@ -1396,12 +1396,6 @@ namespace Rayseer
         return g_context.SetEffekseerCamera(camera);
     }
 
-    // No explicit resize operation is required. Draw() reads raylib's current
-    // render dimensions every frame. Kept as a compatibility no-op.
-    inline void Resize() noexcept
-    {
-    }
-
     //Transform型に応じた位置/大きさ/回転などを設定する
     //Set Effect Transform.( position, scale, rotation )
     inline bool SetEffectTransform(
