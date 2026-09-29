@@ -380,6 +380,11 @@ namespace Rayseer
             return IsValid();
         }
 
+        //Only Debug/Other use
+        std::int32_t GetValue() const noexcept {
+            return value;
+        }
+
     private:
         std::int32_t value = -1;
         const RaySeerContext* owner_ = nullptr;
