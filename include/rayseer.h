@@ -1266,17 +1266,6 @@ namespace Rayseer
         g_context.Shutdown();
     }
 
-    //初期化(本体のみ使用したい場合はこれを使用する)
-    inline bool InitializeRaySeer(int maxParticleCount = 8000)
-    {
-        return Initialize(maxParticleCount);
-    }
-
-    //Shutdown RaySeer Context.
-    inline void ShutdownRaySeer()
-    {
-        Shutdown();
-    }
 
     //エフェクトを読み込む
     //Load to EffectAsset
