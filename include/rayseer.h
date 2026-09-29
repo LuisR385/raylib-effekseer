@@ -418,8 +418,6 @@ namespace Rayseer
     };
 
     using EffectAsset = RaySeerEffectAsset;
-    using Effect = RaySeerEffectAsset;
-    using RSEffectAsset = RaySeerEffectAsset;
 
     class RaySeerContext
     {
